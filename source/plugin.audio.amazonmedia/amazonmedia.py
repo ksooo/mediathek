@@ -70,8 +70,8 @@ class AmazonMedia():
         self.siteVersion  = self.getSetting("siteVersion")
         self.logonURL     = 'https://www.amazon.{}/gp/aw/si.html'.format(self.siteVerList[int(self.siteVersion)])
         self.musicURL     = 'https://music.amazon.{}'.format(self.siteVerList[int(self.siteVersion)])
-        self.userEmail    = ''
-        self.userPassword = ''
+        self.userEmail    = self.getSetting("userEmail")
+        self.userPassword = self.getSetting("userPassword")
         self.userAgent    = self.getSetting("userAgent")
 
         self.deviceId     = self.getSetting("deviceId")
@@ -352,6 +352,8 @@ class AmazonMedia():
         self.setSetting('search1Artists', "")
         self.setSetting('search2Artists', "")
         self.setSetting('search3Artists', "")
+        self.setSetting('userEmail', "")
+        self.setSetting('userPassword', "")
         self.access = False
         xbmc.executebuiltin('Notification("Information:", %s, 5000, )'%(self.translation(30071)))
     def delCredentials(self):
@@ -359,12 +361,14 @@ class AmazonMedia():
         self.userPassword = ''
     def getCredentials(self):
         if not self.userEmail or not self.userPassword:
-            user = self.getUserInput(self.translation(30030),'', hidden=False, uni=False) # get Email
+            user = self.getUserInput(self.translation(30030), self.userEmail, hidden=False, uni=False) # get Email
             if user:
-                pw = self.getUserInput(self.translation(30031),'', hidden=True, uni=False) # get Password
+                pw = self.getUserInput(self.translation(30031), self.userPassword, hidden=True, uni=False) # get Password
                 if pw:
                     self.userEmail = user
                     self.userPassword = pw
+                    self.setSetting('userEmail', user)
+                    self.setSetting('userPassword', pw)
                     return True
                 else:
                     return False
@@ -651,7 +655,7 @@ class AmazonMedia():
     def amazonLogon(self):
         app_config = None
         self.delCookies()
-        xbmcaddon.Addon(id=self.addonId).openSettings()
+#        xbmcaddon.Addon(id=self.addonId).openSettings()
         self.doReInit()
         x = 1
         while not self.access:

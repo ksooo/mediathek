@@ -216,3 +216,11 @@ msgstr ""
 msgctxt "#30107"
 msgid "Show unplayable Songs"
 msgstr ""
+
+msgctxt "#30108"
+msgid "Username (Email)"
+msgstr ""
+
+msgctxt "#30109"
+msgid "Password"
+msgstr ""

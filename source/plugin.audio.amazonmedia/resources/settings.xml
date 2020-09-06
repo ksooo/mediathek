@@ -6,6 +6,8 @@
         <setting id="showimages" type="bool" label="30105" default="false"/>
         <setting id="showUnplayableSongs" type="bool" label="30107" default="false"/>
         <setting id="showcolentr" type="bool" label="30106" default="true"/>
+        <setting id="userEmail" type="text" label="30108" default=""/>
+        <setting id="userPassword" type="text" option="hidden" label="30109" default=""/>
         <setting label="30103" type="action" action="RunPlugin(plugin://plugin.audio.amazonmedia/?mode=resetAddon)"/>
 
         <setting id="userAgent" type="text" visible="false" label="userAgent" default="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36"/>
