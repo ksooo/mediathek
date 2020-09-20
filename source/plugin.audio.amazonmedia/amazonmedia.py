@@ -266,7 +266,7 @@ class AmazonMedia():
             self.setSetting(q[1],self.getSetting(q[0]))
             self.setSetting(q[0],query)
     def getFolder(self,oPath):
-        return xbmc.translatePath(oPath).decode('utf-8') # xbmcvfs
+        return xbmc.translatePath(oPath)
     def getUserInput(self,title,txt,hidden=False,uni=False):
         kb = xbmc.Keyboard()
         kb.setHeading(title)
@@ -2419,7 +2419,7 @@ class AmazonMedia():
         resp = self.amzCall(amz['path'],amz['target'],'soccer',None,target)
         target = resp['Output']['contentResponseList'][0]['urlList'][0] # link to mpd file
         r = requests.get(target)
-        song = self.writeSongFile(r.content,'mpd')
+        song = self.writeSongFile(r.content.decode('utf-8'),'mpd')
         # get the xml file and extract the source
         li = xbmcgui.ListItem(path=song)
         li.setProperty('inputstream', 'inputstream.adaptive')
